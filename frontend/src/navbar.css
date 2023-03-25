@@ -1,0 +1,55 @@
+.searchBar {
+    width: 50%;
+    border-radius: 40px;
+    border: none;
+    height: 3vh;
+    background: #E7E7E7 url(../public/img/magnifying-glass-solid.svg) no-repeat scroll 10px 14px;
+    background-size: 20px;
+    padding: 20px 20px 20px 40px;
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.spacer {
+    margin-right: 3vw;
+}
+
+.sellBtn {
+    width: 6vw;
+    border-radius: 40px !important;
+}
+
+.divTest {
+    border: 3px solid red;
+}
+
+.cnt {
+    text-align: center;
+    width: 100%;
+}
+
+#searchResults {
+    padding: 5px;
+}
+
+h3 {
+    display: inline;
+}
+
+@media (min-width: 992px) {
+    #searchNav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-nav, #topSearchBar, #categoriesNav {
+        display: none !important;
+    }
+    #bottomSearchBar {
+        width: 70%;
+    }
+}

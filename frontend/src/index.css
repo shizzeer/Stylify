@@ -85,7 +85,12 @@ nav .navbar-nav a {
 .imgTxtFooter {
   margin-top: 1rem;
   text-decoration: underline;
+  color: white;
   cursor: pointer;
+}
+
+.info {
+  color: #9A9A9A;
 }
 
 @media (max-width: 991.98px) {
