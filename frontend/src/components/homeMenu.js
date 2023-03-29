@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 
-function LoginMenu () {
+function HomeMenu () {
   return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
+      <nav className="navbar navbar-expand navbar-light bg-light bg-white">
           <div className="container">
               <Link className="navbar-brand" to="/">
                   <img src="./img/logo-no-background.svg" width="150" height="50" alt=""></img>
@@ -16,4 +16,4 @@ function LoginMenu () {
   )
 }
 
-export default LoginMenu;
+export default HomeMenu;

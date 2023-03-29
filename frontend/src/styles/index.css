@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F2F2F2 !important;
 }
 
 code {
@@ -91,6 +92,23 @@ nav .navbar-nav a {
 
 .info {
   color: #9A9A9A;
+}
+
+.dividerLine {
+  border: none;
+  border-bottom: 1px solid #E3E2E2;
+  width: 100%;
+}
+
+.greenLink {
+  font-weight: bold;
+  color: #096A2E;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.greenLink:hover {
+  color: #096A2E;
 }
 
 @media (max-width: 991.98px) {

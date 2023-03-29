@@ -1,0 +1,35 @@
+.btn-login {
+    font-size: 1.5rem !important;
+    letter-spacing: 0.08rem !important;
+    padding: 0 1rem 0.2rem !important;
+    background-color: #096A2E !important;
+    border: none !important;
+}
+
+.btn-login:hover {
+    background-color: #157347 !important;
+}
+
+.login-form-header {
+    color: #096A2E;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.form-input-style {
+    border: 1px solid #C2C2C2 !important;
+    border-radius: 0 !important;
+}
+
+.form-input-style::placeholder {
+    color: #141414;
+    opacity: 50%;
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.form-footer-txt {
+    color: #797979;
+}

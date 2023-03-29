@@ -1,5 +1,5 @@
-import '../product.css';
-import '../index.css';
+import '../styles/product.css';
+import '../styles/index.css';
 
 function Product() {
     return (

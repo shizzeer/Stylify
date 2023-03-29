@@ -1,5 +1,4 @@
 import React from 'react';
-import '../productsGrid.css';
 import Product from "./product";
 
 function ProductsGrid() {

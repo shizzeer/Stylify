@@ -3,7 +3,7 @@
     border-radius: 40px;
     border: none;
     height: 3vh;
-    background: #E7E7E7 url(../public/img/magnifying-glass-solid.svg) no-repeat scroll 10px 14px;
+    background: #E7E7E7 url(../../public/img/magnifying-glass-solid.svg) no-repeat scroll 10px 14px;
     background-size: 20px;
     padding: 20px 20px 20px 40px;
     text-decoration: none;
@@ -46,7 +46,10 @@ h3 {
 }
 
 @media (max-width: 992px) {
-    .navbar-nav, #topSearchBar, #categoriesNav {
+    /*.navbar-nav, #topSearchBar, #categoriesNav {*/
+    /*    display: none !important;*/
+    /*}*/
+    .navDesktopItems, #topSearchBar {
         display: none !important;
     }
     #bottomSearchBar {

@@ -1,0 +1,115 @@
+.mainSectionContainer {
+    height: 100%;
+}
+
+.pad {
+    padding: 20px 0 0 40px;
+}
+
+.customCard {
+    background: white;
+    padding: 20px;
+}
+
+.verticalSpacer {
+    margin-bottom: 40px;
+}
+
+.productFeaturesCard {
+    width: 85% !important;
+    margin-left: 50px;
+    border: 3px solid white;
+}
+
+.featureInput {
+    border: none;
+    border-bottom: 1px solid #A1A1A1;
+    padding-bottom: 8px;
+    width: 20vw;
+}
+
+.featureInput::placeholder {
+    color: #A1A1A1;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.textAreaInput {
+    outline: none;
+    height: 15vh;
+}
+
+.start {
+    float: left;
+}
+
+.end {
+    float: right;
+}
+
+.addPhotoArea {
+    border-radius: 10px;
+    border: 2px dashed #096A2E;
+    width: 85% !important;
+    /*padding: 40px;*/
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.addBtn {
+    border-radius: 10px;
+    border: 2px solid #096A2E;
+    background: none;
+    width: 30%;
+    height: 70px;
+}
+
+.addBtnValue {
+    color: #096A2E;
+    font-size: 25px;
+}
+
+.iconStyle {
+    font-size: 50px;
+    vertical-align: middle;
+    margin-top: -6px;
+    color: #096A2E;
+}
+
+.btnInnerContainer {
+    margin-top: -5px;
+}
+
+.featureName {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+@media (max-width: 991.98px) {
+    .productFeaturesCard {
+        width: 100% !important;
+    }
+    .featureInput, .productFeatureSelect {
+        width: 35vw !important;
+        padding-bottom: 5px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .featureInput, .productFeatureSelect {
+        width: 40vw !important;
+        padding-bottom: 2px;
+    }
+
+    .featureName, .featureInput::placeholder {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .featureName, .featureInput::placeholder {
+        font-size: 15px;
+    }
+}

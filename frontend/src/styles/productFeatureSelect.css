@@ -1,0 +1,16 @@
+.productFeatureSelect {
+    width: 20vw;
+    border: none !important;
+    border-bottom: 1px solid #A1A1A1 !important;
+    padding-bottom: 5px;
+}
+
+.productFeatureSelect:focus {
+    outline: none;
+}
+
+.featureValue {
+    color: #A1A1A1 !important;
+    font-weight: 600 !important;
+    font-size: 1.2em !important;
+}

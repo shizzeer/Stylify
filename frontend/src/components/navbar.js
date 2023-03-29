@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import '../navbar.css';
+import '../styles/navbar.css';
 
 function Navbar() {
     return (
@@ -18,7 +18,7 @@ function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="align-items-center navbar-nav ml-auto">
+                    <div className="navDesktopItems align-items-center navbar-nav ml-auto">
                         <Link className="spacer text-secondary nav-item nav-link">username</Link>
                         <Link className="nav-item nav-link" to="/sell">
                             <button type="button" className="sellBtn spacer btn btn-success">Sell</button>
@@ -51,19 +51,13 @@ function Navbar() {
                     <input type="text" id="bottomSearchBar" className="searchBar" placeholder="Search for clothes"></input>
                 </div>
             </nav>
-            <nav id="categoriesNav" className="navbar navbar-expand-lg navbar-light bg-light bg-white">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
                 <div className="container">
-                    <div className="align-items-center navbar-nav ml-1">
+                    <div className="navDesktopItems align-items-center navbar-nav ml-1">
                         <Link className="spacer text-secondary nav-item nav-link" to="/women">Women</Link>
                         <Link className="spacer text-secondary nav-item nav-link" to="/mens">Men</Link>
                         <Link className="spacer text-secondary nav-item nav-link" to="/kids">Kids</Link>
                     </div>
-                </div>
-            </nav>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
-                <div id="searchResults" className="cnt ">
-                    <h3>Men</h3>
-                    <span className="info">  8 results.</span>
                 </div>
             </nav>
         </React.Fragment>

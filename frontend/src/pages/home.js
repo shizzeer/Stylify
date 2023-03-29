@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import LoginMenu from "../components/loginMenu";
+import HomeMenu from "../components/homeMenu";
 
 function Home() {
     return (
         <React.Fragment>
-            <LoginMenu />
+            <HomeMenu />
             <div className="imgContainer">
                 <img src="./img/girl-pic.jpg"></img>
                 <div className="textOverlay">
