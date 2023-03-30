@@ -87,7 +87,15 @@
     font-weight: 600;
 }
 
+.sellBtn {
+    width: 6vw !important;
+    margin-bottom: 30px;
+}
+
 @media (max-width: 991.98px) {
+    .sellBtn {
+        width: 13vw !important;
+    }
     .productFeaturesCard {
         width: 100% !important;
     }
@@ -98,6 +106,10 @@
 }
 
 @media (max-width: 575.98px) {
+    .sellBtn {
+        width: 25vw !important;
+    }
+
     .featureInput, .productFeatureSelect {
         width: 40vw !important;
         padding-bottom: 2px;

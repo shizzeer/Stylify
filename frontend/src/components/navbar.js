@@ -51,7 +51,7 @@ function Navbar() {
                     <input type="text" id="bottomSearchBar" className="searchBar" placeholder="Search for clothes"></input>
                 </div>
             </nav>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white" id="categoriesNav">
                 <div className="container">
                     <div className="navDesktopItems align-items-center navbar-nav ml-1">
                         <Link className="spacer text-secondary nav-item nav-link" to="/women">Women</Link>

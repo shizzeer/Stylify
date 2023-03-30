@@ -5,24 +5,14 @@ import '../styles/index.css';
 
 function LoginForm() {
     return(<form>
-        <div className="form-floating mb-3">
-            <input type="email" className="form-input-style form-control" id="floatingInput"
-                   placeholder="Email"/>
-            <label htmlFor="floatingInput">Email</label>
+        <div className="mb-4 form-group">
+            <input type="email" className="form-control" name="email" placeholder="Email"
+                   required="required"/>
         </div>
-        <div className="form-floating mb-3">
-            <input type="password" className="form-input-style form-control" id="floatingPassword"
-                   placeholder="Password"/>
-            <label htmlFor="floatingPassword">Password</label>
+        <div className="mb-4 form-group">
+            <input type="password" className="form-control" name="password" placeholder="Password"
+                   required="required"/>
         </div>
-
-        {/*<div className="form-check mb-3">*/}
-        {/*    <input className="form-check-input" type="checkbox" value=""*/}
-        {/*           id="rememberPasswordCheck"/>*/}
-        {/*        <label className="form-check-label" htmlFor="rememberPasswordCheck">*/}
-        {/*            Remember password*/}
-        {/*        </label>*/}
-        {/*</div>*/}
         <div className="d-grid">
             <button className="btn btn-primary btn-login"
                     type="submit">Login
