@@ -28,7 +28,7 @@ function Sell() {
                     <ProductFeatureSelect featureName={"Condition"} optionValues={conditionOptions}/>
                     <ProductFeatureInput featureName={"Price"} placeholderValue={"0,00 $"}/>
                     <div className="verticalSpacer"></div>
-                    <div className="end"><button type="button" className="sellBtn spacer btn btn-success">Add</button></div>
+                    <div className="end"><button type="button" className="sellBtn verticalSpacer spacer btn btn-success">Add</button></div>
                 </div>
             </div>
         </React.Fragment>
