@@ -1,45 +1,23 @@
 package com.example.stylify.model;
 
+import jakarta.persistence.*;
+
 import java.sql.Date;
 
+@Entity
+@Table(name = "Shopping_Cart")
 public class ShoppingCart {
-    private final Integer shoppingCartId;
-    private Integer customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "shopping_cart_id")
+    private int shoppingCartId;
+    @Basic
+    @Column(name = "customer_id")
+    private int customerId;
+    @Basic
+    @Column(name = "date_created")
     private Date dateCreated;
-    private Double total;
-
-    public ShoppingCart(Integer shoppingCartId, Integer customerId, Date dateCreated, Double total) {
-        this.shoppingCartId = shoppingCartId;
-        this.customerId = customerId;
-        this.dateCreated = dateCreated;
-        this.total = total;
-    }
-
-    public Integer getShoppingCartId() {
-        return shoppingCartId;
-    }
-
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
+    @Basic
+    @Column(name = "total")
+    private double total;
 }

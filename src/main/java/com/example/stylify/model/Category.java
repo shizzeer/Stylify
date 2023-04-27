@@ -1,23 +1,16 @@
 package com.example.stylify.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Categories")
 public class Category {
-    private final Integer categoryId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "category_id")
+    private int customerId;
+
+    @Basic
+    @Column(name = "name")
     private String name;
-
-    public Category(Integer categoryId, String name) {
-        this.categoryId = categoryId;
-        this.name = name;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

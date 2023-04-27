@@ -1,95 +1,36 @@
 package com.example.stylify.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Customers", schema = "public", catalog = "stylify_db")
 public class Customer {
-    private final Integer customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "customer_id")
+    private int customerId;
+    @Basic
+    @Column(name = "first_name")
     private String firstName;
+    @Basic
+    @Column(name = "last_name")
     private String lastName;
+    @Basic
+    @Column(name = "country")
     private String country;
+    @Basic
+    @Column(name = "street")
     private String street;
+    @Basic
+    @Column(name = "city")
     private String city;
+    @Basic
+    @Column(name = "zip_code")
     private String zipCode;
+    @Basic
+    @Column(name = "phone_number")
     private String phoneNumber;
-    private Double balance;
-
-    public Customer(Integer customerId, String firstName, String lastName, String country,
-                    String street, String city, String zipCode, String phoneNumber,
-                    Double balance) {
-        this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.street = street;
-        this.city = city;
-        this.zipCode = zipCode;
-        this.phoneNumber = phoneNumber;
-        this.balance = balance;
-    }
-
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
+    @Basic
+    @Column(name = "balance")
+    private double balance;
 }
