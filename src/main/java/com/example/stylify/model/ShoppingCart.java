@@ -3,6 +3,7 @@ package com.example.stylify.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Shopping_Cart")
@@ -11,13 +12,17 @@ public class ShoppingCart {
     @Id
     @Column(name = "shopping_cart_id")
     private int shoppingCartId;
-    @Basic
-    @Column(name = "customer_id")
-    private int customerId;
-    @Basic
-    @Column(name = "date_created")
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "shoppingCart")
+    private Set<Product> products;
+
+    @Column(name = "date_created", nullable = false)
     private Date dateCreated;
-    @Basic
-    @Column(name = "total")
+
+    @Column(name = "total", nullable = false)
     private double total;
 }

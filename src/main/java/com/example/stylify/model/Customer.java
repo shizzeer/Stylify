@@ -2,35 +2,46 @@ package com.example.stylify.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
-@Table(name = "Customers", schema = "public", catalog = "stylify_db")
+@Table(name = "Customers")
 public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "customer_id")
     private int customerId;
-    @Basic
-    @Column(name = "first_name")
+
+    @OneToOne(mappedBy = "customer")
+    private User user;
+
+    @OneToOne(mappedBy = "customer")
+    private ShoppingCart shoppingCart;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Order> orders;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Basic
-    @Column(name = "last_name")
+
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Basic
-    @Column(name = "country")
+
+    @Column(name = "country", nullable = false)
     private String country;
-    @Basic
-    @Column(name = "street")
+
+    @Column(name = "street", nullable = false)
     private String street;
-    @Basic
-    @Column(name = "city")
+
+    @Column(name = "city", nullable = false)
     private String city;
-    @Basic
-    @Column(name = "zip_code")
+
+    @Column(name = "zip_code", nullable = false)
     private String zipCode;
-    @Basic
+
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Basic
-    @Column(name = "balance")
+
+    @Column(name = "balance", nullable = false)
     private double balance;
 }

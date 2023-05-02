@@ -2,23 +2,31 @@ package com.example.stylify.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "Users")
 public class User {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "customer_id")
     private int customerId;
-    @Basic
-    @Column(name = "email")
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Product> products;
+
+    @Column(name = "email", nullable = false)
     private String email;
-    @Basic
-    @Column(name = "username")
+
+    @Column(name = "username", nullable = false)
     private String username;
-    @Basic
-    @Column(name = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
-    @Basic
-    @Column(name = "is_admin")
-    private boolean isAdmin;
+
+    @Column(name = "is_admin", nullable = false)
+    private boolean isAdmin = false;
 }

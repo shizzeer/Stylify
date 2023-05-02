@@ -11,10 +11,11 @@ public class Order {
     @Id
     @Column(name = "order_id")
     private int orderId;
-    @Basic
-    @Column(name = "customer_id")
-    private int customerId;
-    @Basic
-    @Column(name = "date")
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    public Customer customer;
+
+    @Column(name = "date", nullable = false)
     private Date date;
 }

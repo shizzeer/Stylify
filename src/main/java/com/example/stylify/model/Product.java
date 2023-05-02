@@ -2,6 +2,9 @@ package com.example.stylify.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "Products")
 public class Product {
@@ -9,22 +12,36 @@ public class Product {
     @Id
     @Column(name = "product_id")
     private int productId;
-    @Basic
-    @Column(name = "name")
+
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Products_To_Tags",
+            joinColumns = { @JoinColumn(name = "product_id" )},
+            inverseJoinColumns = { @JoinColumn(name = "tag_id") }
+    )
+    private Set<Tag> tags = new HashSet<>();
+
+    @Column(name = "name", nullable = false)
     private String name;
-    @Basic
+
     @Column(name = "description")
     private String description;
-    @Basic
+
     @Column(name = "image_url")
     private String imageUrl;
-    @Basic
-    @Column(name = "price")
+
+    @Column(name = "price", nullable = false)
     private double price;
-    @Basic
-    @Column(name = "customer_id")
-    private int customerId;
-    @Basic
-    @Column(name = "category_id")
-    private int categoryId;
 }
