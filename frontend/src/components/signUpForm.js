@@ -19,6 +19,10 @@ function SignUpForm() {
                                required="required"/>
         </div>
         <div className="mb-4 form-group">
+            <input type="email" className="form-control" name="username" placeholder="Username"
+                   required="required"/>
+        </div>
+        <div className="mb-4 form-group">
             <input type="password" className="form-control" name="password" placeholder="Password"
                                required="required"/>
             <p className="hint-text">Must be at least 8 characters and
