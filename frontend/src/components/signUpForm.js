@@ -6,14 +6,14 @@ import '../styles/signup.css';
 
 function SignUpForm() {
     return (<form>
-        <div className="mb-4 form-group">
-            <div className="row">
-                <div className="col"><input type="text" className="form-control" name="first_name"
-                                            placeholder="First name" required="required"/></div>
-                <div className="col"><input type="text" className="form-control" name="last_name"
-                                            placeholder="Last name" required="required"/></div>
-            </div>
-        </div>
+        {/*<div className="mb-4 form-group">*/}
+        {/*    <div className="row">*/}
+        {/*        <div className="col"><input type="text" className="form-control" name="first_name"*/}
+        {/*                                    placeholder="First name" required="required"/></div>*/}
+        {/*        <div className="col"><input type="text" className="form-control" name="last_name"*/}
+        {/*                                    placeholder="Last name" required="required"/></div>*/}
+        {/*    </div>*/}
+        {/*</div>*/}
         <div className="mb-4 form-group">
             <input type="email" className="form-control" name="email" placeholder="Email"
                                required="required"/>
