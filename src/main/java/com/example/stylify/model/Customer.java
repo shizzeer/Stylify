@@ -43,5 +43,5 @@ public class Customer {
     private String phoneNumber;
 
     @Column(name = "balance", nullable = false)
-    private double balance;
+    private double balance = 5000;
 }
