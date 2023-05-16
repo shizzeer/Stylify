@@ -2,14 +2,15 @@ import React from 'react';
 import '../styles/productFeatureSelect.css';
 import '../styles/sell.css';
 
-function ProductFeatureSelect( {featureName, optionValues} ) {
+function ProductFeatureSelect( {featureName, optionValues, handler} ) {
     return (
         <React.Fragment>
             <div className="customCard pad row justify-content-center">
                 <div className="mx-auto productFeaturesCard">
                     <div className="start"><span className="featureName">{featureName}</span></div>
                     <div className="end">
-                        <select className="productFeatureSelect featureValue" aria-label="Default select example">
+                        <select className="productFeatureSelect featureValue" aria-label="Default select example"
+                        onBlur={handler}>
                             {optionValues?.map((option) => (
                                 <option value={option.value}>{option.value}</option>
                             ))}

@@ -1,10 +1,51 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, Navigate} from "react-router-dom";
 import '../styles/login.css';
 import '../styles/index.css';
 
 function LoginForm() {
-    return(<form>
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [error, setError] = useState('');
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const email = formData.get('email');
+        console.log(email);
+        const password = formData.get('password');
+        console.log(password);
+
+        try {
+            const response = await fetch('/api/auth/authenticate', {
+                method: 'POST',
+                body: JSON.stringify({email, password}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                const token = data.token;
+                localStorage.setItem('jwtToken', token);
+                setLoggedIn(true);
+                console.log('Logged in!');
+                console.log(localStorage.getItem('jwtToken'));
+            } else {
+                const errorData = await response.json();
+                const errorMsg = errorData.message;
+                setError(errorMsg);
+            }
+        } catch (e) {
+            console.error(e);
+            setError('Network error. Try again later')
+        }
+    }
+    if (loggedIn) {
+        return <Navigate replace to="/mens" />
+    }
+
+    return(<form onSubmit={handleSubmit}>
+        {error && <div className="mb-4 form group">{error}</div>}
         <div className="mb-4 form-group">
             <input type="email" className="form-control" name="email" placeholder="Email"
                    required="required"/>

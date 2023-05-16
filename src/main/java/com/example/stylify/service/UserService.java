@@ -3,6 +3,9 @@ package com.example.stylify.service;
 import com.example.stylify.model.User;
 import com.example.stylify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -33,5 +36,13 @@ public class UserService {
             return "Your password must have a symbol and number.";
         }
         return "Password is valid";
+    }
+
+    public User getAuthenticatedUser() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        String username = authentication.getName();
+        System.out.println(username);
+        return userRepository.findByEmail(username).get();
     }
 }

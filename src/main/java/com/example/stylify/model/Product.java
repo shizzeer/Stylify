@@ -21,9 +21,9 @@ public class Product {
     @JoinColumn(name = "customer_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private Category category;*/
 
     @ManyToMany
     @JoinTable(
@@ -44,4 +44,82 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private double price;
+
+    @Column(name="condition", nullable = false)
+    private String condition;
+
+    @Column(name="category", nullable = false)
+    private String category;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /*public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }*/
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

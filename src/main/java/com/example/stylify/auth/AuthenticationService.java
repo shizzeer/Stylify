@@ -8,9 +8,14 @@ import com.example.stylify.repository.UserRepository;
 import com.example.stylify.service.CustomerService;
 import com.example.stylify.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -71,19 +76,31 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+    public ResponseEntity<AuthResponse> authenticate(AuthenticationRequest request) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+        } catch (AuthenticationException e) {
+            AuthResponse authResponse = AuthResponse.builder()
+                    .token("")
+                    .message("Incorrect email or password")
+                    .build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(authResponse);
+        }
+
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        return AuthResponse.builder()
+        System.out.println("Token po zalogowaniu sie: " + jwtToken);
+
+        AuthResponse authResponse = AuthResponse.builder()
                 .token(jwtToken)
                 .message("Login successful")
                 .build();
+        return ResponseEntity.ok(authResponse);
     }
 }
