@@ -1,4 +1,14 @@
 import {useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import api from './api';
+
+const RedirectComponent = () => {
+    const navigate = useNavigate();
+    navigate('/login');
+    console.log("dupa");
+
+    return null;
+};
 
 class SellApi {
     constructor(jwtToken) {
@@ -33,7 +43,32 @@ class SellApi {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('/api/product/sell', {
+        api.post('/product/sell', {
+            name: this.productName,
+            description: this.productDescription,
+            category: this.productCategory,
+            condition: this.productCondition,
+            price: this.productPrice
+        })
+            .then((response) => {
+                alert(response.data.message);
+                window.location.reload();
+            })
+            .catch((error) => {
+                if (error.response) {
+                    if (error.response.status === 401) {
+                        alert("Your session has expired. Please, log in again");
+                        window.location.href = "/login";
+                    }
+                    if (error.response.status === 400) {
+                        alert(error.response.data.error);
+                        window.location.reload();
+                    }
+                } else {
+                    console.log(error.message);
+                }
+            });
+        /*fetch('/api/product/sell', {
             method: 'POST',
             body: JSON.stringify({
                 name: this.productName,
@@ -58,7 +93,9 @@ class SellApi {
             })
             .catch((error) => {
                 console.error(error);
-            });
+            });*/
+
+
     }
 }
 

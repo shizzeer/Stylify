@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Navbar from "../components/navbar";
 import '../styles/sell.css';
-import axios from 'axios';
 
 import ProductFeatureInput from "../components/productFeatureInput";
 import ProductFeatureDescription from "../components/productFeatureDescription";
