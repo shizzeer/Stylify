@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductFeatureInput( {featureName, type, placeholderValue, handler} ) {
+function ProductFeatureInput( {featureName, type, placeholderValue, handler, errors} ) {
     return (
         <React.Fragment>
             <div className="customCard pad row justify-content-center">
@@ -12,7 +12,10 @@ function ProductFeatureInput( {featureName, type, placeholderValue, handler} ) {
                                id="title"
                                placeholder={placeholderValue}
                                name="title"
-                               onChange={handler}></input></div>
+                               onChange={handler}></input>
+                        <br /><br />
+                        {errors && <div className="error">{errors[featureName.toLowerCase()]}</div>}
+                    </div>
                 </div>
             </div>
             <div className="dividerLine"></div>

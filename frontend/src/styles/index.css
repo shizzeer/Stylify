@@ -111,6 +111,10 @@ nav .navbar-nav a {
   color: #096A2E;
 }
 
+.error {
+  color: darkred;
+}
+
 @media (max-width: 991.98px) {
   .textOverlay {
     top: 35%;

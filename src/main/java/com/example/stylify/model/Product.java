@@ -39,8 +39,11 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "size", nullable = false)
+    private String size;
+
+    @Column(name = "image")
+    private byte[] image;
 
     @Column(name = "price", nullable = false)
     private double price;
@@ -91,12 +94,21 @@ public class Product {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+
+    public String getSize() {
+        return size;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public double getPrice() {

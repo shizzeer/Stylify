@@ -1,20 +1,11 @@
-import {useState} from "react";
-import {useNavigate} from 'react-router-dom';
 import api from './api';
-
-const RedirectComponent = () => {
-    const navigate = useNavigate();
-    navigate('/login');
-    console.log("dupa");
-
-    return null;
-};
+import {type} from "@testing-library/user-event/dist/type";
 
 class SellApi {
-    constructor(jwtToken) {
-        this.token = jwtToken;
+    constructor() {
         this.productName = null;
         this.productDescription = null;
+        this.productImage = null;
         this.productCategory = "Women"; // default category
         this.productCondition = "New"; // default condition
         this.productPrice = null;
@@ -40,12 +31,19 @@ class SellApi {
         this.productPrice = event.target.value;
     }
 
+    handleImageChange = (event) => {
+        this.productImage = event.target.files[0];
+        console.log(event.target.files[0]);
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.productImage);
 
         api.post('/product/sell', {
             name: this.productName,
             description: this.productDescription,
+            image: this.productImage,
             category: this.productCategory,
             condition: this.productCondition,
             price: this.productPrice
@@ -68,34 +66,6 @@ class SellApi {
                     console.log(error.message);
                 }
             });
-        /*fetch('/api/product/sell', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: this.productName,
-                description: this.productDescription,
-                category: this.productCategory,
-                condition: this.productCondition,
-                price: this.productPrice
-            }),
-            headers: {
-                'Authorization': `Bearer ${this.token}`,
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.message === '') {
-                    alert(data.error);
-                } else {
-                    alert(data.message);
-                }
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error(error);
-            });*/
-
-
     }
 }
 

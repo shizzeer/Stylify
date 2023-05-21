@@ -1,6 +1,5 @@
 package com.example.stylify.controller;
 
-import com.example.stylify.auth.RegisterRequest;
 import com.example.stylify.dto.ProductDTO;
 import com.example.stylify.model.DefaultResponse;
 import com.example.stylify.model.Product;
@@ -10,15 +9,12 @@ import com.example.stylify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/api/product")
@@ -36,10 +32,14 @@ public class ProductController {
         try {
             String name = productDTO.getName();
             String description = productDTO.getDescription();
-            String imageUrl = productDTO.getImageUrl();
+            String size = productDTO.getSize();
+            String base64Image = productDTO.getBase64Image();
+            System.out.println("Base64 of an image: " + base64Image);
+            byte[] image = Base64.getDecoder().decode(base64Image);
             String condition = productDTO.getCondition();
             String category = productDTO.getCategory();
             double price = productDTO.getPrice();
+
 
             // TODO: PRZENIESC DO SERWISU
             if (price <= 0) {
@@ -54,7 +54,8 @@ public class ProductController {
             Product product = new Product();
             product.setName(name);
             product.setDescription(description);
-            product.setImageUrl(imageUrl);
+            product.setSize(size);
+            product.setImage(image);
             product.setCondition(condition);
             product.setPrice(price);
             product.setCategory(category);
