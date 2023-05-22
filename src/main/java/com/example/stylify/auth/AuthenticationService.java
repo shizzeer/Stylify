@@ -32,35 +32,39 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse register(RegisterRequest request) {
+    public ResponseEntity<AuthResponse> register(RegisterRequest request) {
         String username = request.getUsername();
         String email = request.getEmail();
         String password = request.getPassword();
         String confirmedPassword = request.getConfirmedPassword();
-        if (userService.findByUsername(username).isPresent()) {
-            return AuthResponse.builder()
-                    .token("")
-                    .message("Username already exists")
-                    .build();
-        }
         if (userService.findByEmail(email).isPresent()) {
-            return AuthResponse.builder()
+            AuthResponse authResponse = AuthResponse.builder()
                     .token("")
                     .message("Email already exists")
                     .build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(authResponse);
+        }
+        if (userService.findByUsername(username).isPresent()) {
+            AuthResponse authResponse = AuthResponse.builder()
+                    .token("")
+                    .message("Username already exists")
+                    .build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(authResponse);
         }
         if (!Objects.equals(password, confirmedPassword)) {
-            return AuthResponse.builder()
+            AuthResponse authResponse = AuthResponse.builder()
                     .token("")
                     .message("Typed passwords are different")
                     .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(authResponse);
         }
         String passwordComplexityInfo = userService.checkPasswordComplexity(password);
         if (!Objects.equals(passwordComplexityInfo, "Password is valid")) {
-            return AuthResponse.builder()
+            AuthResponse authResponse = AuthResponse.builder()
                     .token("")
-                    .message(passwordComplexityInfo + " Must be at least 8 characters and contain a number or symbol")
+                    .message(passwordComplexityInfo + " Must be at least 8 characters and contain a number and symbol")
                     .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(authResponse);
         }
 
         User user = new User(email, username, passwordEncoder.encode(password), Role.USER);
@@ -70,10 +74,11 @@ public class AuthenticationService {
         user.setCustomer(customer);
         userService.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthResponse.builder()
+        AuthResponse authResponse = AuthResponse.builder()
                 .token(jwtToken)
-                .message("Account registered successfully")
+                .message("Account registered successfully! You can now log in")
                 .build();
+        return ResponseEntity.status(HttpStatus.OK).body(authResponse);
     }
 
     public ResponseEntity<AuthResponse> authenticate(AuthenticationRequest request) {
