@@ -34,14 +34,11 @@ public class ProductController {
             String description = productDTO.getDescription();
             String size = productDTO.getSize();
             String base64Image = productDTO.getBase64Image();
-            System.out.println("Base64 of an image: " + base64Image);
             byte[] image = Base64.getDecoder().decode(base64Image);
             String condition = productDTO.getCondition();
             String category = productDTO.getCategory();
             double price = productDTO.getPrice();
 
-
-            // TODO: PRZENIESC DO SERWISU
             if (price <= 0) {
                 response.setError("Incorrect price");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
