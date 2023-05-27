@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "../components/navbar";
 import '../styles/sell.css';
 
@@ -6,8 +6,15 @@ import ProductFeatureInput from "../components/productFeatureInput";
 import ProductFeatureDescription from "../components/productFeatureDescription";
 import ProductFeatureSelect from "../components/productFeatureSelect";
 import api from '../api/api';
+import {useNavigate} from "react-router-dom";
+import handleSessionAuth from "../api/auth";
 
 export default function Sell() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        handleSessionAuth(navigate);
+    }, []);
+
     const categoryOptions = [{value: "Women"}, {value: "Men"}, {value: "Kids"}];
     const conditionOptions = [{value: "New"}, {value: "Used"}];
     const allowedSizes = ['XS', 'S', 'M', 'L', 'XXL'];

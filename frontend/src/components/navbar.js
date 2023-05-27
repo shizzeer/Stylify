@@ -1,13 +1,26 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
+import {Link, Navigate, useNavigate} from "react-router-dom";
 import '../styles/navbar.css';
 
 function Navbar() {
+    const [loggedOut, setLoggedOut] = useState(false);
+
+    const handleLogout = () => {
+        const token = localStorage.getItem('jwtToken');
+        console.log('Logging out');
+        console.log('User token: ' + token);
+        localStorage.removeItem('jwtToken');
+        console.log('User logged out');
+        setLoggedOut(true);
+    }
+    if (loggedOut) {
+        return <Navigate to="/" />;
+    }
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
                 <div className="container">
-                    <Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to="/all">
                         <img src="./img/logo-no-background.svg" width="150" height="50" alt=""></img>
                     </Link>
                     <input type="text" id="topSearchBar" className="searchBar" placeholder="Search for clothes"></input>
@@ -23,7 +36,7 @@ function Navbar() {
                         <Link className="nav-item nav-link" to="/sell">
                             <button type="button" className="sellBtn spacer btn btn-success">Sell</button>
                         </Link>
-                        <Link className="nav-item nav-link">
+                        <Link className="nav-item nav-link" onClick={handleLogout}>
                         <span style={{fontSize: "2em", color: "#928D8D"}}>
                             <i className="fa-solid fa-right-from-bracket"></i>
                         </span>
@@ -54,6 +67,7 @@ function Navbar() {
             <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white" id="categoriesNav">
                 <div className="container">
                     <div className="navDesktopItems align-items-center navbar-nav ml-1">
+                        <Link className="spacer text-secondary nav-item nav-link" to="/all">All</Link>
                         <Link className="spacer text-secondary nav-item nav-link" to="/women">Women</Link>
                         <Link className="spacer text-secondary nav-item nav-link" to="/mens">Men</Link>
                         <Link className="spacer text-secondary nav-item nav-link" to="/kids">Kids</Link>

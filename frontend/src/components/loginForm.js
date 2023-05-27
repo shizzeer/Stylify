@@ -41,7 +41,7 @@ function LoginForm() {
         }
     }
     if (loggedIn) {
-        return <Navigate replace to="/mens" />
+        return <Navigate replace to="/all" />
     }
 
     return(<form onSubmit={handleSubmit}>
