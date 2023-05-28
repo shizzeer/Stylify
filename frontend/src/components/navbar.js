@@ -7,10 +7,7 @@ function Navbar() {
 
     const handleLogout = () => {
         const token = localStorage.getItem('jwtToken');
-        console.log('Logging out');
-        console.log('User token: ' + token);
         localStorage.removeItem('jwtToken');
-        console.log('User logged out');
         setLoggedOut(true);
     }
     if (loggedOut) {
@@ -20,8 +17,8 @@ function Navbar() {
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
                 <div className="container">
-                    <Link className="navbar-brand" to="/all">
-                        <img src="./img/logo-no-background.svg" width="150" height="50" alt=""></img>
+                    <Link className="navbar-brand" to="/products/all">
+                        <img src="../img/logo-no-background.svg" width="150" height="50" alt=""></img>
                     </Link>
                     <input type="text" id="topSearchBar" className="searchBar" placeholder="Search for clothes"></input>
 
@@ -67,10 +64,10 @@ function Navbar() {
             <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white" id="categoriesNav">
                 <div className="container">
                     <div className="navDesktopItems align-items-center navbar-nav ml-1">
-                        <Link className="spacer text-secondary nav-item nav-link" to="/all">All</Link>
-                        <Link className="spacer text-secondary nav-item nav-link" to="/women">Women</Link>
-                        <Link className="spacer text-secondary nav-item nav-link" to="/mens">Men</Link>
-                        <Link className="spacer text-secondary nav-item nav-link" to="/kids">Kids</Link>
+                        <Link className="spacer text-secondary nav-item nav-link" to="/products/all">All</Link>
+                        <Link className="spacer text-secondary nav-item nav-link" to="/products/women">Women</Link>
+                        <Link className="spacer text-secondary nav-item nav-link" to="/products/mens">Men</Link>
+                        <Link className="spacer text-secondary nav-item nav-link" to="/products/kids">Kids</Link>
                     </div>
                 </div>
             </nav>

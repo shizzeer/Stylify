@@ -54,6 +54,10 @@ public class Product {
     @Column(name="category", nullable = false)
     private String category;
 
+    public int getProductId() {
+        return productId;
+    }
+
     public User getUser() {
         return user;
     }

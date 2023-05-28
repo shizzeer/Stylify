@@ -11,9 +11,7 @@ function LoginForm() {
 
         const formData = new FormData(event.target);
         const email = formData.get('email');
-        console.log(email);
         const password = formData.get('password');
-        console.log(password);
 
         try {
             const response = await fetch('/api/auth/authenticate', {
@@ -41,7 +39,7 @@ function LoginForm() {
         }
     }
     if (loggedIn) {
-        return <Navigate replace to="/all" />
+        return <Navigate replace to="/products/all" />
     }
 
     return(<form onSubmit={handleSubmit}>

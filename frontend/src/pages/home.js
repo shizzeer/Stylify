@@ -1,10 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useEffect} from 'react';
 
 import HomeMenu from "../components/homeMenu";
+import handleSessionAuth from "../api/auth";
 
 function Home() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        handleSessionAuth(navigate, true);
+    }, []);
+
     return (
         <React.Fragment>
             <HomeMenu />

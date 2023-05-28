@@ -24,8 +24,8 @@ export default function Sell() {
     const [productDescription, setProductDescription] = useState('');
     const [productSize, setProductSize] = useState('');
     const [productBase64Image, setProductBase64Image] = useState('');
-    const [productCategory, setProductCategory] = useState('New'); // default category
-    const [productCondition, setProductCondition] = useState('Women'); // default condition
+    const [productCategory, setProductCategory] = useState('Women'); // default category
+    const [productCondition, setProductCondition] = useState('New'); // default condition
     const [productPrice, setProductPrice] = useState(0);
     // Error handling
     const [errors, setErrors] = useState({});
@@ -122,11 +122,10 @@ export default function Sell() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(productBase64Image);
         const noErrors = Object.values(errors).every(error => error === '');
 
         if (noErrors) {
-            api.post('/product/sell', {
+            api.post('/products/sell', {
                 name: productName,
                 description: productDescription,
                 size: productSize,

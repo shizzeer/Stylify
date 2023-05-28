@@ -8,6 +8,7 @@
 
 .productImg {
     padding: 10px 0 10px 0;
+    cursor: pointer;
 }
 
 .col-lg-3 {

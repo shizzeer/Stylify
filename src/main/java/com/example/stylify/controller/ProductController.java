@@ -7,22 +7,35 @@ import com.example.stylify.model.User;
 import com.example.stylify.service.ProductService;
 import com.example.stylify.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
     private final UserService userService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{category}")
+    public ResponseEntity<List<ProductDTO>> getProductsByCategory(
+            @PathVariable String category
+    ) {
+        List<ProductDTO> products = productService.getProductsByCategory(category);
+        return ResponseEntity.ok(products);
+    }
 
     @PostMapping("/sell")
     public ResponseEntity<DefaultResponse> sell(

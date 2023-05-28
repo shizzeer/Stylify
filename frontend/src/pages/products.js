@@ -17,7 +17,7 @@ function Products({category}) {
         <React.Fragment>
             <Navbar />
             <ResultsInfo category={category}/>
-            <ProductsGrid />
+            <ProductsGrid productsCategory={category.toLowerCase()}/>
         </React.Fragment>
     )
 }
