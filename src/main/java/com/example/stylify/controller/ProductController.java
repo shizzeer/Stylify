@@ -3,9 +3,11 @@ package com.example.stylify.controller;
 import com.example.stylify.dto.ProductDTO;
 import com.example.stylify.model.DefaultResponse;
 import com.example.stylify.model.Product;
+import com.example.stylify.model.ProductResponse;
 import com.example.stylify.model.User;
 import com.example.stylify.service.ProductService;
 import com.example.stylify.service.UserService;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/products")
@@ -22,6 +25,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final UserService userService;
+    private ProductResponse productResponse;
 
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
@@ -35,6 +39,20 @@ public class ProductController {
     ) {
         List<ProductDTO> products = productService.getProductsByCategory(category);
         return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> getProductById(
+            @PathVariable Integer id
+    ) {
+        try {
+            ProductDTO product = productService.getProductById(id);
+            productResponse.setProduct(product);
+            return ResponseEntity.ok(productResponse);
+        } catch (NoSuchElementException e) {
+            productResponse.setError("Product not found");
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productResponse);
+        }
     }
 
     @PostMapping("/sell")

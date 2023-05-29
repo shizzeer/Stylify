@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -41,6 +43,13 @@ public class ProductService {
         return productsDTO;
     }
 
+    private ProductDTO getProductDTO(Product product) {
+        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
+        productDTO.setProductId(product.getProductId());
+        productDTO.setSellerUsername(product.getUser().getActualUsername());
+        return productDTO;
+    }
+
     public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return getProductDTOS(products);
@@ -50,6 +59,13 @@ public class ProductService {
         System.out.println(category);
         List<Product> products = productRepository.findByCategoryIgnoreCase(category);
         return getProductDTOS(products);
+    }
+
+    public ProductDTO getProductById(Integer id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        Product product = optionalProduct.orElseThrow(() ->
+                new NoSuchElementException("Product not found"));
+        return getProductDTO(product);
     }
 
     public void sell(Product product) {

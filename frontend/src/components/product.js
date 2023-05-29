@@ -1,13 +1,14 @@
 import '../styles/product.css';
 import '../styles/index.css';
 import {useState} from "react";
-import ProductDetails from "./productDetails";
+import ProductDetails from "../pages/productDetails";
 
 function Product( {product} ) {
-    const [displayDetails, setDisplayDetails] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const handleClick = () => {
-        setDisplayDetails(true);
+    const handleClick = (product) => {
+        console.log(product.price);
+        setSelectedProduct(product);
     }
 
     return (
@@ -16,7 +17,10 @@ function Product( {product} ) {
                 <span className="info">{product.sellerUsername}</span>
             </div>
             <div className="productImg">
-                <img onClick={handleClick} className="img-fluid" src={product.image} style={{height: 450, width: 455}}></img>
+                <img onClick={() => handleClick(product)}
+                     className="img-fluid"
+                     src={product.image}
+                     style={{height: 450, width: 455}}></img>
             </div>
             <div className="productInfo">
                 <h4>{product.price}$</h4>

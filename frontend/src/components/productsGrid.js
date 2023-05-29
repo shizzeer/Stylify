@@ -38,8 +38,10 @@ function ProductsGrid({productsCategory}) {
                 <div className="row">
                     {products.map((product) => {
                         base64ImageFormat = getBase64ImageFormat(product.image);
-                        base64Image = 'data:image/' + base64ImageFormat + ';base64,' + product.image;
-                        product.image = base64Image;
+                        if (product.image.substring(0, 4) !== 'data') {
+                            base64Image = 'data:image/' + base64ImageFormat + ';base64,' + product.image;
+                            product.image = base64Image;
+                        }
                         return <Product product={product} />
                     })}
                 </div>
