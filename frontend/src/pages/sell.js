@@ -51,7 +51,6 @@ export default function Sell() {
     const handleSizeChange = (event) => {
         const size = event.target.value;
         const numericalSize = parseInt(size);
-        console.log(allowedSizes.includes(size));
         if (allowedSizes.includes(size) || (!isNaN(numericalSize) && (numericalSize >= 28 && numericalSize <= 50))) {
             setErrors((prevErrors) => ({...prevErrors, size: ''}));
             if (!isNaN(numericalSize)) {

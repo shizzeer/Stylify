@@ -54,6 +54,10 @@ public class Product {
     @Column(name="category", nullable = false)
     private String category;
 
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
     public int getProductId() {
         return productId;
     }
@@ -73,6 +77,14 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }*/
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
 
     public Set<Tag> getTags() {
         return tags;

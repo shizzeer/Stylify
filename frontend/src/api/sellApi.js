@@ -33,7 +33,6 @@ class SellApi {
 
     handleImageChange = (event) => {
         this.productImage = event.target.files[0];
-        console.log(event.target.files[0]);
     }
 
     handleSubmit = (event) => {

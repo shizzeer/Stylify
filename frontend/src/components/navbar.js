@@ -18,7 +18,7 @@ function Navbar() {
             <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white">
                 <div className="container">
                     <Link className="navbar-brand" to="/products/all">
-                        <img src="../img/logo-no-background.svg" width="150" height="50" alt=""></img>
+                        <img src="/img/logo-no-background.svg" width="150" height="50" alt=""></img>
                     </Link>
                     <input type="text" id="topSearchBar" className="searchBar" placeholder="Search for clothes"></input>
 
@@ -34,9 +34,9 @@ function Navbar() {
                             <button type="button" className="sellBtn spacer btn btn-success">Sell</button>
                         </Link>
                         <Link className="nav-item nav-link" onClick={handleLogout}>
-                        <span style={{fontSize: "2em", color: "#928D8D"}}>
-                            <i className="fa-solid fa-right-from-bracket"></i>
-                        </span>
+                            <span style={{fontSize: "2em", color: "#928D8D"}}>
+                                <i className="fa-solid fa-right-from-bracket"></i>
+                            </span>
                         </Link>
                     </div>
 

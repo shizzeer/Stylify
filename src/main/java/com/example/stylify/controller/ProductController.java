@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/products")
@@ -25,7 +24,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final UserService userService;
-    private ProductResponse productResponse;
+    private final ProductResponse productResponse = new ProductResponse();
 
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
@@ -41,15 +40,16 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/details/{id}")
     public ResponseEntity<ProductResponse> getProductById(
             @PathVariable Integer id
     ) {
         try {
+            System.out.println(id);
             ProductDTO product = productService.getProductById(id);
             productResponse.setProduct(product);
             return ResponseEntity.ok(productResponse);
-        } catch (NoSuchElementException e) {
+        } catch (NullPointerException e) {
             productResponse.setError("Product not found");
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productResponse);
         }

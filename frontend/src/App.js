@@ -6,7 +6,9 @@ import Login from './pages/login';
 import SignUp from './pages/signUp';
 import Sell from './pages/sell';
 import Products from "./pages/products";
-import ProductDetails from "./pages/productDetails";
+import ProductDetailsPage from "./pages/productDetailsPage";
+import CartPage from "./pages/cartPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
     return (
@@ -19,8 +21,10 @@ function App() {
                 <Route path="/products/mens" element={<Products category={'Men'} />}></Route>
                 <Route path="/products/women" element={<Products category={'Women'} />}></Route>
                 <Route path="/products/kids" element={<Products category={'Kids'} />}></Route>
-                <Route path="/products/:id" element={<ProductDetails />}></Route>
+                <Route path="/products/details/:id" element={<ProductDetailsPage />}></Route>
                 <Route path="/sell" element={<Sell />}></Route>
+                <Route path="/cart" element={<CartPage />}></Route>
+                <Route path="/order" element={<OrderPage />}></Route>
                 {/*<Route path="/test" element={<ProductDetails />}></Route>*/}
             </Routes>
         </React.Fragment>

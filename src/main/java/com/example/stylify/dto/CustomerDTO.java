@@ -1,5 +1,10 @@
 package com.example.stylify.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class CustomerDTO extends UserDTO {
     private String firstName;
     private String lastName;
@@ -7,19 +12,18 @@ public class CustomerDTO extends UserDTO {
     private String city;
     private String zipCode;
     private String phoneNumber;
+    private String street;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private double balance = 5000;
 
-    public CustomerDTO(String username, String password, String email, String firstName,
-                       String lastName, String country, String city, String zipCode,
-                       String phoneNumber, double balance) {
-        super(username, password, email);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.city = city;
-        this.zipCode = zipCode;
-        this.phoneNumber = phoneNumber;
-        this.balance = balance;
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getFirstName() {

@@ -2,6 +2,7 @@ package com.example.stylify.service;
 
 import com.example.stylify.dto.ProductDTO;
 import com.example.stylify.model.Product;
+import com.example.stylify.model.User;
 import com.example.stylify.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -9,10 +10,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -33,7 +31,7 @@ public class ProductService {
         modelMapper.addMappings(productMap);
     }
 
-    private List<ProductDTO> getProductDTOS(List<Product> products) {
+    public List<ProductDTO> getProductDTOS(List<Product> products) {
         TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {};
         List<ProductDTO> productsDTO = modelMapper.map(products, typeToken.getType());
         for (int i = 0; i < productsDTO.size(); i++) {
@@ -43,11 +41,49 @@ public class ProductService {
         return productsDTO;
     }
 
+    public Set<ProductDTO> getProductDTOS(Set<Product> products) {
+        TypeToken<Set<ProductDTO>> typeToken = new TypeToken<Set<ProductDTO>>() {};
+        Set<ProductDTO> productsDTO = modelMapper.map(products, typeToken.getType());
+        Iterator<ProductDTO> iterator = productsDTO.iterator();
+        Iterator<Product> productIterator = products.iterator();
+
+        while (iterator.hasNext() && productIterator.hasNext()) {
+            ProductDTO productDTO = iterator.next();
+            Product product = productIterator.next();
+
+            productDTO.setProductId(product.getProductId());
+            productDTO.setSellerUsername(product.getUser().getActualUsername());
+        }
+        return productsDTO;
+    }
+
     private ProductDTO getProductDTO(Product product) {
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
         productDTO.setProductId(product.getProductId());
         productDTO.setSellerUsername(product.getUser().getActualUsername());
         return productDTO;
+    }
+
+    public Product getProductFromProductDTO(ProductDTO productDTO) {
+        Product product = new Product();
+        String sellerUsername = productDTO.getSellerUsername();
+        Optional<User> seller = userService.findByUsername(sellerUsername);
+        if (seller.isEmpty()) {
+            return null;
+        }
+        String base64Image = productDTO.getBase64Image();
+
+        product.setName(productDTO.getName());
+        product.setCategory(productDTO.getCategory());
+        product.setPrice(productDTO.getPrice());
+        product.setCondition(productDTO.getCondition());
+        product.setDescription(productDTO.getDescription());
+        product.setSize(productDTO.getSize());
+        product.setImage(Base64.getDecoder().decode(base64Image));
+        product.setUser(seller.get());
+        product.setProductId(productDTO.getProductId());
+
+        return product;
     }
 
     public List<ProductDTO> getAllProducts() {
@@ -64,7 +100,7 @@ public class ProductService {
     public ProductDTO getProductById(Integer id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         Product product = optionalProduct.orElseThrow(() ->
-                new NoSuchElementException("Product not found"));
+                new NullPointerException("Product not found"));
         return getProductDTO(product);
     }
 
